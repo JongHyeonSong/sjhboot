@@ -15,9 +15,9 @@ public class Hi {
   public String getMethodName() {
 
     // ERROR > WARN > INFO > DEBUG 순인듯?
-    log.debug("debugg");
-    log.warn("warng");
-    log.info("info");
+//    log.debug("debugg");
+//    log.warn("warng");
+//    log.info("info");
 
     return new String("GOGO");
   }

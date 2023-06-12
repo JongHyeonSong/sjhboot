@@ -35,3 +35,54 @@ log.debug("debugg"); // log객체 어디서 나오느거임..
 
 
 org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer
+
+
+
+
+
+### mybatis 설정하기
+1. 필요한것들 설치
+implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+2. Bean으로 총 세개 띄우기(sqlSession만 띄우면 먼가 버그남)
+```
+@Bean
+public DataSource dataSource() {
+  System.out.println(12314);
+    DataSourceBuilder dsb = DataSourceBuilder.create();
+    dsb.url("jdbc:mariadb://localhost:3306/newlec?");
+    dsb.username("root");
+    dsb.password("whdgus159!");
+    dsb.driverClassName(Driver.class.getName());
+    DataSource dataSource = dsb.build();
+    return dataSource;
+}
+@Bean
+public SqlSessionFactory sqlSessionFactory() throws Exception {
+  SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+  sqlSessionFactoryBean.setDataSource(dataSource());
+  sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/mymy-config.xml")); //해당경로에 해당파일준비해놓기
+  sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
+  
+  return sqlSessionFactoryBean.getObject();
+}	
+
+@Bean
+public SqlSession sqlSession() throws Exception {
+  return new SqlSessionTemplate(sqlSessionFactory());
+}
+```
+
+
+3. Mapper.xml 만들고 Controller에서 SqlSession으로 얻어오기
+@GetMapping("/useSqlMapper")
+public String useSqlMapper() {
+
+  List<Map<String, String>> mm = sqlSession.selectList("admin.test", new HashMap<>());
+  System.out.println(mm);
+
+  return "HOHO";
+}
