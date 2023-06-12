@@ -21,6 +21,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
+	// AOP 패키지
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	
+
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	compileOnly 'org.projectlombok:lombok'
