@@ -30,6 +30,13 @@ public class TestMapper {
 		System.out.println(Driver.class.getName());
 		return "GOGO gg";
 	}
+	
+	@GetMapping("/exception")
+	public String exex() throws Exception {
+		Integer ii = 1/0;
+		
+		return "gogo";
+	}
 
 	@GetMapping("/useSqlMapper")
 	public String useSqlMapper() {

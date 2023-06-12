@@ -18,7 +18,7 @@ public class CorsFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("CHCHCH");
+		// System.out.println("CHCHCH");
 
 		HttpServletResponse rr = (HttpServletResponse) response;
 		rr.setHeader("hoho", "BCBC");
