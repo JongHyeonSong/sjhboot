@@ -1,0 +1,37 @@
+# 로그 예쁘게 컬러링
+spring.output.ansi.enabled=always
+
+
+기본설정으로, Debugger탭에서 스프링을 시작한다.
+장점: 화면 파랗게보이고 글자필터됨, 단점: 시작 java커맨드안보임
+  "java.debug.settings.console": "internalConsole"
+
+
+
+기본설정으로, terminal에서 스프링을 시작한다.
+장점: 직접 java 커맨트확인가능, 단점: 로그 글자 찾기가 어려움
+  "java.debug.settings.console": "integratedTerminal"
+
+
+# 로깅수준설정
+logging.level.[com.example.sjhboot]: WARN // 이라고하면 WARN 이상, WARN, ERROR를 출력한다
+    // ERROR > WARN > INFO > DEBUG 순인듯?
+
+
+
+## 롬복 추가하기
+// compileOnly 'org.projectlombok:lombok'
+// annotationProcessor 'org.projectlombok:lombok'
+
+@Slf4j 어노테이션 클래스에 붙여주고,
+
+
+메소드 안에서
+log.debug("debugg"); // log객체 어디서 나오느거임..
+
+
+
+  implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
+
+org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer
