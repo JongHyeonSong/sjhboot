@@ -22,7 +22,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
-	private String baseUrl = "localhost:8080";
+	// private String baseUrl = "localhost:8080";
 
 	@Bean
 	public Docket dockk() {
@@ -52,7 +52,7 @@ public class SwaggerConfig {
 		ddSelector.paths(PathSelectors.any());
 
 		dd.useDefaultResponseMessages(false);
-		dd.host(baseUrl);
+		// dd.host(baseUrl);
 
 		return dd;
 	}

@@ -1,0 +1,42 @@
+package com.example.sjhboot.proxy;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+public class JdkProxy {
+    public static void main(String[] args) {
+        MyInterface sample = (MyInterface) Proxy.newProxyInstance(
+                MyInterface.class.getClassLoader(),
+                new Class[] { MyInterface.class },
+                new SampleHandler());
+        sample.runSample();
+    }
+}
+
+interface MyInterface {
+
+    String runSample();
+}
+
+class SampleHandler implements InvocationHandler {
+    // private final SampleInterface origin = new SampleImple();
+
+    class SampleImple implements MyInterface {
+        // @Override
+        public String runSample() {
+            System.out.println("INVOINVO@@");
+            return "HI";
+        }
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("runBefore 1");
+        Object result = method.invoke(new SampleImple(), args);
+        System.out.println(result);
+        System.out.println("runAfter");
+
+        return null;
+    }
+}

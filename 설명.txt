@@ -86,3 +86,9 @@ public String useSqlMapper() {
 
   return "HOHO";
 }
+
+
+
+
+gradle 빌드시 자바홈설정
+./gradlew bootJar -Dorg.gradle.java.home=C:/OpenJDK/jdk-17.0.2
